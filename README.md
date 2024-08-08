@@ -3,7 +3,7 @@
 
 ## Modules
 ### Music downloader client
-- [gomusic](github.com/m1kkY8/gomusic)
+- [gomusic](https://github.com/m1kkY8/gomusic)
 
 
 
