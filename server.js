@@ -1,34 +1,19 @@
-const express = require("express");
-const playdl = require("play-dl")
+// For creating a server
+const http = require('http');
 
-const app = express();
-const port = 3001;
+// Custom modules
 
-app.get("/search", async (req, res) => {
-    const query = req.query.q
+// Our module which sets up routing 
+// and incoming requests handling
+const app = require('./app');
 
-    if(!query){
-        res.status(400).json({error: "No query"});
-    }
+// Creating the server and running it on port 300
+const server = http.createServer(app);
+const port = 3001
+server.listen(port);
 
-    try {
-        const results = await playdl.search(query, {limit: 1});
-        
-        const videoLinks = results.map(video => ({
-            title: video.title,
-            url: video.url
-        }));
-        
-        console.log(videoLinks[0])
-        res.json(videoLinks[0]);
-
-    }
-
-    catch (error){
-        console.log(error);
-    }
-});
-
-app.listen(port, ()=> {
-    console.log(`Server running on localhost:${port}`);
+// Prints a message in the terminal
+// once the server is active
+server.once('listening', function () {
+    console.info(`Started the server on http://localhost:${port}`);
 });
