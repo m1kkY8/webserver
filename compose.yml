@@ -1,0 +1,6 @@
+services:
+  webserver:
+    build: .
+    container_name: webserver
+    ports:
+      - 3001:3001
